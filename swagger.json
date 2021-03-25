@@ -1,0 +1,2244 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "API",
+    "description": "API Documentation"
+  },
+  "host": "localhost:3000",
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "Category",
+      "description": "API for category"
+    },
+    {
+      "name": "Location",
+      "description": "API for Location"
+    },
+    {
+      "name": "Offer",
+      "description": "API for Offer"
+    },
+    {
+      "name": "Shipping",
+      "description": "API for Shipping"
+    },
+    {
+      "name": "User",
+      "description": "API for User"
+    },
+    {
+      "name": "Payment",
+      "description": "API for Payment"
+    },
+    {
+      "name": "Product",
+      "description": "API for Product"
+    },
+    {
+      "name": "Cart",
+      "description": "API for Cart"
+    },
+    {
+      "name": "Order",
+      "description": "API for Order"
+    },
+    {
+      "name": "Specification",
+      "description": "API for Specification"
+    }
+  ],
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/categories": {
+      "get": {
+        "tags": ["Category"],
+        "description": "List all categories",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "List all categories",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Category"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Category"],
+        "description": "Create category",
+        "parameters": [
+          {
+            "name": "nameEn",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "nameAr",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "type": "file"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Create category",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "object",
+                  "$ref": "#/definitions/Category"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categories/{categoryId}": {
+      "put": {
+        "tags": ["Category"],
+        "description": "Update category",
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "description": "Category Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "nameEn",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "nameAr",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "type": "file"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Update category",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "object",
+                  "$ref": "#/definitions/Category"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Category"],
+        "description": "Delete category",
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "description": "Category Id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Delete category",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "boolean",
+                  "default": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/locations": {
+      "get": {
+        "tags": ["Location"],
+        "description": "List all locations",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "List all locations",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Location"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Location"],
+        "description": "Create location",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Location Object",
+            "schema": {
+              "$ref": "#/definitions/LocationReq"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Create Location",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "object",
+                  "$ref": "#/definitions/Location"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/locations/{locationId}": {
+      "put": {
+        "tags": ["Location"],
+        "description": "Update location",
+        "parameters": [
+          {
+            "name": "locationId",
+            "in": "path",
+            "description": "Location Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Location Object",
+            "schema": {
+              "$ref": "#/definitions/LocationReq"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Update location",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "object",
+                  "$ref": "#/definitions/Location"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Location"],
+        "description": "Delete location",
+        "parameters": [
+          {
+            "name": "locationId",
+            "in": "path",
+            "description": "Location Id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Delete location",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "boolean",
+                  "default": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/offers": {
+      "get": {
+        "tags": ["Offer"],
+        "description": "List all offers",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "List all offers",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Offer"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Offer"],
+        "description": "Create offer",
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "formData",
+            "format": "YYYY-MM-DD",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "endDate",
+            "in": "formData",
+            "format": "YYYY-MM-DD",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "type": "file"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Create Offer",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "object",
+                  "$ref": "#/definitions/Offer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/offers/new": {
+      "get": {
+        "tags": ["Offer"],
+        "description": "List all non-expired newest offers",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "List all non-expired newest offers",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Offer"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/offers/{offerId}": {
+      "put": {
+        "tags": ["Offer"],
+        "description": "Update offer",
+        "parameters": [
+          {
+            "name": "offerId",
+            "in": "path",
+            "description": "Offer Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "createDate",
+            "in": "formData",
+            "format": "YYYY-MM-DD",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "expireDate",
+            "in": "formData",
+            "format": "YYYY-MM-DD",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "type": "file"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Update offer",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "object",
+                  "$ref": "#/definitions/Offer"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Offer"],
+        "description": "Delete offer",
+        "parameters": [
+          {
+            "name": "offerId",
+            "in": "path",
+            "description": "Offer Id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Delete offer",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "boolean",
+                  "default": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/shippings": {
+      "get": {
+        "tags": ["Shipping"],
+        "description": "List all shippings",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "List all shippings",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Shipping"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Shipping"],
+        "description": "Create shipping",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Shipping Object",
+            "schema": {
+              "$ref": "#/definitions/ShippingReq"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Create shipping",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "object",
+                  "$ref": "#/definitions/Shipping"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/shippings/{shippingId}": {
+      "put": {
+        "tags": ["Shipping"],
+        "description": "Update shipping",
+        "parameters": [
+          {
+            "name": "shippingId",
+            "in": "path",
+            "description": "Shipping Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Shipping Object",
+            "schema": {
+              "$ref": "#/definitions/ShippingReq"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Update shipping",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "object",
+                  "$ref": "#/definitions/Shipping"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Shipping"],
+        "description": "Delete shipping",
+        "parameters": [
+          {
+            "name": "shippingId",
+            "in": "path",
+            "description": "Shipping Id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Delete shipping",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "boolean",
+                  "default": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": ["User"],
+        "description": "List all users",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "List all users",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["User"],
+        "description": "Create user",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "User Object",
+            "schema": {
+              "$ref": "#/definitions/UserReq"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Create user",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "object",
+                  "$ref": "#/definitions/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{userId}": {
+      "put": {
+        "tags": ["User"],
+        "description": "Update user",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "User Object",
+            "schema": {
+              "$ref": "#/definitions/UserReq"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Update user",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "object",
+                  "$ref": "#/definitions/User"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["User"],
+        "description": "Delete user",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User Id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Delete user",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "boolean",
+                  "default": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payments": {
+      "get": {
+        "tags": ["Payment"],
+        "description": "List all payments",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "List all payments",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Payment"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Payment"],
+        "description": "Create payment",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Payment Object",
+            "schema": {
+              "$ref": "#/definitions/PaymentReq"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Create payment",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "object",
+                  "$ref": "#/definitions/Payment"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/payments/{paymentId}": {
+      "put": {
+        "tags": ["Payment"],
+        "description": "Update payment",
+        "parameters": [
+          {
+            "name": "paymentId",
+            "in": "path",
+            "description": "Payment Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Payment Object",
+            "schema": {
+              "$ref": "#/definitions/PaymentReq"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Update payment",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "object",
+                  "$ref": "#/definitions/Payment"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Payment"],
+        "description": "Delete payment",
+        "parameters": [
+          {
+            "name": "paymentId",
+            "in": "path",
+            "description": "Payment Id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Delete payment",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "boolean",
+                  "default": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "tags": ["Product"],
+        "description": "List all products",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "List all products",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Product"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Product"],
+        "description": "Create product",
+        "consumes": ["multipart/form-data"],
+        "parameters": [
+          {
+            "name": "images",
+            "in": "formData",
+            "description": "Product Images",
+            "type": "array",
+            "items": {
+              "type": "file"
+            }
+          },
+          {
+            "name": "titleEn",
+            "in": "formData",
+            "description": "Title En",
+            "type": "string"
+          },
+          {
+            "name": "titleAr",
+            "in": "formData",
+            "description": "Title Ar",
+            "type": "string"
+          },
+          {
+            "name": "descriptionEn",
+            "in": "formData",
+            "description": "Description En",
+            "type": "string"
+          },
+          {
+            "name": "descriptionAr",
+            "in": "formData",
+            "description": "Description Ar",
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "in": "formData",
+            "description": "Category",
+            "type": "string"
+          },
+          {
+            "name": "price",
+            "in": "formData",
+            "description": "Price",
+            "type": "number"
+          },
+          {
+            "name": "discount",
+            "in": "formData",
+            "description": "Discount",
+            "type": "number"
+          },
+          {
+            "name": "specification",
+            "in": "formData",
+            "description": "Specification",
+            "type": "object"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Create product",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "object",
+                  "$ref": "#/definitions/Product"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/low": {
+      "get": {
+        "tags": ["Product"],
+        "description": "List all products sorted by price low to high",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "List all products sorted by price low to high",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Product"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/discount": {
+      "get": {
+        "tags": ["Product"],
+        "description": "List all products sorted by discount high to low",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "List all products sorted by discount high to low",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Product"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/new": {
+      "get": {
+        "tags": ["Product"],
+        "description": "List all products sorted by recent category created",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "List all products sorted by recent category created",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Product"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/category": {
+      "get": {
+        "tags": ["Product"],
+        "description": "List all products sorted by recent category created",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "List all products sorted by recent category created",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Product"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/category/{categoryId}": {
+      "get": {
+        "tags": ["Product"],
+        "description": "List all products of particular category",
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "description": "Category Id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "List all products of particular category",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Product"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/category/{categoryId}/low": {
+      "get": {
+        "tags": ["Product"],
+        "description": "List all products of particular category sorted by price low to high",
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "description": "Category Id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "List all products of particular category sorted by price low to high",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Product"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/category/{categoryId}/discount": {
+      "get": {
+        "tags": ["Product"],
+        "description": "List all products of particular category sorted by discount high to low",
+        "parameters": [
+          {
+            "name": "categoryId",
+            "in": "path",
+            "description": "Category Id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "List all products of particular category sorted by discount high to low",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Product"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{productId}": {
+      "put": {
+        "tags": ["Product"],
+        "description": "Update product",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "description": "Product Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Product Object",
+            "schema": {
+              "$ref": "#/definitions/ProductReq"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Update product",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "object",
+                  "$ref": "#/definitions/Product"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Product"],
+        "description": "Delete product",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "description": "Product Id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Delete product",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "boolean",
+                  "default": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/carts": {
+      "post": {
+        "tags": ["Cart"],
+        "description": "Create cart",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Cart Object",
+            "schema": {
+              "$ref": "#/definitions/CartReq"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Create cart",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "object",
+                  "$ref": "#/definitions/Cart"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/carts/{cartId}": {
+      "put": {
+        "tags": ["Cart"],
+        "description": "Update cart",
+        "parameters": [
+          {
+            "name": "cartId",
+            "in": "path",
+            "description": "Cart Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Cart Object",
+            "schema": {
+              "$ref": "#/definitions/CartReq"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Update cart",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "object",
+                  "$ref": "#/definitions/Cart"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Cart"],
+        "description": "Delete cart",
+        "parameters": [
+          {
+            "name": "cartId",
+            "in": "path",
+            "description": "Cart Id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Delete cart",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "boolean",
+                  "default": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/carts/{userId}": {
+      "get": {
+        "tags": ["Cart"],
+        "description": "List all carts of user",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "List all carts of user",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Cart"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders": {
+      "get": {
+        "tags": ["Order"],
+        "description": "List all orders",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "List all orders",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Order"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Order"],
+        "description": "Create order",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Order Object",
+            "schema": {
+              "$ref": "#/definitions/OrderReq"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Create order",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "object",
+                  "$ref": "#/definitions/Order"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/{orderId}": {
+      "put": {
+        "tags": ["Order"],
+        "description": "Update order",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "Order Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Order Object",
+            "schema": {
+              "$ref": "#/definitions/OrderReq"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Update order",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "object",
+                  "$ref": "#/definitions/Order"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Order"],
+        "description": "Delete order",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "description": "Order Id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Delete order",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "boolean",
+                  "default": true
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/{userId}/new": {
+      "get": {
+        "tags": ["Order"],
+        "description": "List all orders of users by newest",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "User Id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "List all orders of users by newest",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Order"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/specifications": {
+      "get": {
+        "tags": ["Specification"],
+        "description": "Get all specifications",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Get all specifications",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Specification"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Specification"],
+        "description": "Create specification",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Specification Object",
+            "schema": {
+              "$ref": "#/definitions/SpecificationReq"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Create specification",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "object",
+                  "$ref": "#/definitions/SpecificationReq"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/specifications/{specificationId}": {
+      "put": {
+        "tags": ["Specification"],
+        "description": "Update specification",
+        "parameters": [
+          {
+            "name": "specificationId",
+            "in": "path",
+            "description": "Specification Id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Specification Object",
+            "schema": {
+              "$ref": "#/definitions/SpecificationReq"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Update specification",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "object",
+                  "$ref": "#/definitions/Specification"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Specification"],
+        "description": "Delete specification",
+        "parameters": [
+          {
+            "name": "specificationId",
+            "in": "path",
+            "description": "Specification Id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Delete specification",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "data": {
+                  "type": "boolean",
+                  "default": true
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CategoryReq": {
+      "type": "object",
+      "properties": {
+        "nameEn": {
+          "type": "string"
+        },
+        "nameAr": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string",
+          "format": "binary"
+        }
+      }
+    },
+    "Category": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "nameEn": {
+          "type": "string"
+        },
+        "nameAr": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "LocationReq": {
+      "type": "object",
+      "properties": {
+        "nameEn": {
+          "type": "string"
+        },
+        "nameAr": {
+          "type": "string"
+        },
+        "lat": {
+          "type": "string"
+        },
+        "lng": {
+          "type": "string"
+        }
+      }
+    },
+    "Location": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "nameEn": {
+          "type": "string"
+        },
+        "nameAr": {
+          "type": "string"
+        },
+        "lat": {
+          "type": "string"
+        },
+        "lng": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "OfferReq": {
+      "type": "object",
+      "properties": {
+        "createDate": {
+          "type": "string"
+        },
+        "expireDate": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string",
+          "format": "binary"
+        }
+      }
+    },
+    "Offer": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "createDate": {
+          "type": "string",
+          "format": "YYYY-MM-DD"
+        },
+        "expireDate": {
+          "type": "string",
+          "format": "YYYY-MM-DD"
+        },
+        "image": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "ShippingReq": {
+      "type": "object",
+      "properties": {
+        "nameEn": {
+          "type": "string"
+        },
+        "nameAr": {
+          "type": "string"
+        },
+        "cost": {
+          "type": "number"
+        }
+      }
+    },
+    "Shipping": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "nameEn": {
+          "type": "string"
+        },
+        "nameAr": {
+          "type": "string"
+        },
+        "cost": {
+          "type": "number"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "UserReq": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "auth0Id": {
+          "type": "string"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "auth0Id": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "PaymentReq": {
+      "type": "object",
+      "properties": {
+        "paymentData": {
+          "type": "object"
+        }
+      }
+    },
+    "Payment": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "paymentData": {
+          "type": "object"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "ProductReq": {
+      "type": "object",
+      "properties": {
+        "titleEn": {
+          "type": "string"
+        },
+        "titleAr": {
+          "type": "string"
+        },
+        "descriptionEn": {
+          "type": "string"
+        },
+        "descriptionAr": {
+          "type": "string"
+        },
+        "specification": {
+          "type": "object"
+        },
+        "price": {
+          "type": "number"
+        },
+        "discount": {
+          "type": "number"
+        },
+        "status": {
+          "type": "boolean"
+        },
+        "category": {
+          "type": "string"
+        },
+        "sku": {
+          "type": "number"
+        },
+        "promotion": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Product": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "titleEn": {
+          "type": "string"
+        },
+        "titleAr": {
+          "type": "string"
+        },
+        "descriptionEn": {
+          "type": "string"
+        },
+        "descriptionAr": {
+          "type": "string"
+        },
+        "specification": {
+          "type": "array"
+        },
+        "price": {
+          "type": "number"
+        },
+        "discount": {
+          "type": "number"
+        },
+        "status": {
+          "type": "boolean"
+        },
+        "category": {
+          "type": "string"
+        },
+        "sku": {
+          "type": "number"
+        },
+        "promotion": {
+          "type": "boolean"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "CartReq": {
+      "type": "object",
+      "properties": {
+        "product": {
+          "type": "string"
+        },
+        "user": {
+          "type": "string"
+        },
+        "qty": {
+          "type": "number"
+        },
+        "specification": {
+          "type": "string"
+        }
+      }
+    },
+    "Cart": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "product": {
+          "type": "object",
+          "$ref": "#/definitions/Product"
+        },
+        "user": {
+          "type": "string"
+        },
+        "qty": {
+          "type": "number"
+        },
+        "specification": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "OrderReq": {
+      "type": "object",
+      "properties": {
+        "location": {
+          "type": "string"
+        },
+        "user": {
+          "type": "string"
+        },
+        "shipping": {
+          "type": "string"
+        },
+        "orderDate": {
+          "type": "string",
+          "format": "YYYY-MM-DD"
+        },
+        "amount": {
+          "type": "number"
+        }
+      }
+    },
+    "Order": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "user": {
+          "type": "string"
+        },
+        "shipping": {
+          "type": "string"
+        },
+        "orderDate": {
+          "type": "string",
+          "format": "YYYY-MM-DD"
+        },
+        "products": {
+          "type": "array",
+          "items": [
+            {
+              "_id": {
+                "type": "string"
+              },
+              "qty": {
+                "type": "number"
+              },
+              "unitPrice": {
+                "type": "number"
+              },
+              "total": {
+                "type": "number"
+              },
+              "product": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "SpecificationReq": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Specification": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
